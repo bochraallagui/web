@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>{% block title %} welcome {% endblock %}</title>
+  <title>{% block title %} Pidev swap {% endblock %}</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -51,63 +51,58 @@
 
 {% block header %}
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top header-scrolled">
-    <div class="container d-flex align-items-center">
- <h1 class="logo me-auto"><a href="index.html">SWAP</a></h1>
-      
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto"><img src="{{asset('front-office/img/logo.png'
-      )}}" alt="" class="img-fluid"></a>-->
+    <header id="header" class="fixed-top d-flex align-items-center">
+      <div class="container d-flex align-items-center">
+        <h1 class="logo me-auto"><a href="index.html">SWA<span>P</span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt=""></a>-->
+  
+        <nav id="navbar" class="navbar order-last order-lg-0">
+          <ul>
+            <li><a class="nav-link scrollto active" href="#hero">Acceuil</a></li>
+            <li><a class="nav-link scrollto" href="#about">A propos </a></li>
+            <li><a class="nav-link scrollto" href="#services">Produits </a></li>
+            <li class="dropdown"><a href="#"><span>Services </span> <i class="bi bi-chevron-down"></i></a>
+              <ul>
+                <li><a href="#">Echange</a></li>
+                <li><a href="#">Produits</a></li>
+                
+              </ul>
+            </li>
 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Acceuil</a></li>
-          <li><a class="nav-link scrollto" href="#about">A propos</a></li>
-          <li><a class="nav-link scrollto" href="#services">Reclamation</a></li>
-          <li><a class="nav-link   scrollto" href="#portfolio">Produits</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li class="dropdown"><a href="#"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Echange </a></li>s
-
-              </li>
-              <li><a href="#">Produit</a></li>
-              
-            </ul>
-          </li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
+            <li><a class="nav-link scrollto " href="#portfolio">Réclamation</a></li>
+            <li><a class="nav-link scrollto" href="#team">Livraison</a></li>
+        
+            <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+  
+        <a href="#about" class="get-started-btn scrollto">Compte</a>
+      </div>
+    </header><!-- End Header -->
   {% endblock %}
 
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
-
-
-
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-          <h1>Better Solutions For Your Business</h1>
-          <h2>We are team of talented designers making websites with Bootstrap</h2>
-          <div class="d-flex justify-content-center justify-content-lg-start">
-            <a href="#about" class="btn-get-started scrollto">Get Started</a>
-           
-          </div>
+  
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="d-flex align-items-center">
+  
+      <div class="container" data-aos="zoom-out" data-aos-delay="100">
+        <div class="row">
+          <div class="col-xl-6">
+            <h1>Bienvenue <br>la famille SWAP</h1>
+            <h2>Vous trouvez tout les nouveautés chez nous .<br>Une application qui offres une large sélection<br>
+               des produits avec un livraison à domicille en <br>un temps opportun .</h2>
+            <a href="#about" class="btn-get-started scrollto">Voir plus </a>
+       </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
           <img src="{{asset('front-office/img/hero-img.png')}}" class="img-fluid animated" alt="">
         </div>
       </div>
     </div>
-    
+    </section><!-- End Hero -->
 
-  </section><!-- End Hero -->
 
   <main id="main">
 
@@ -179,7 +174,7 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Porduits</h2>
+          <h2>Produits</h2>
           <p> Voici les produits :</p>
         </div>
 
@@ -286,76 +281,43 @@
 
       </div>
     </section><!-- End Portfolio Section -->
-
-    <!-- ======= Team Section ======= -->
     <section id="team" class="team section-bg">
-      <div class="container" data-aos="fade-up">
+  <div class="container" data-aos="fade-up">
 
-        <div class="section-title">
-          <h2>Team</h2>
-          <p>Voici notre équipe :</p>
+    <div class="section-title">
+      <h2>Livraison</h2>
+      <p>Choisissez votre option de livraison :</p>
+    </div>
+
+    <div class="row">
+
+      <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
+        <div class="member d-flex align-items-start">
+          <div class="member-info">
+            <h4>Point de relais </h4>
+            <span>24 heures</span>
+            <p>Retirez votre commande dans l'un de nos points de relais.</p>
+           <a href="#" class="btn-get-started btn-outline">Choisir cette option</a>
+
+          </div>
         </div>
-
-        <div class="row">
-
-          <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="{{asset('front-office/img/team/team-1.jpg')}}" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Executive Officer</span>
-                <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
-                <div class="social">
-                  <a href=""><i class="ri-twitter-fill"></i></a>
-                  <a href=""><i class="ri-facebook-fill"></i></a>
-                  <a href=""><i class="ri-instagram-fill"></i></a>
-                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-6 mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="200">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="{{asset('front-office/img/team/team-2.jpg')}}" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Product Manager</span>
-                <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
-                <div class="social">
-                  <a href=""><i class="ri-twitter-fill"></i></a>
-                  <a href=""><i class="ri-facebook-fill"></i></a>
-                  <a href=""><i class="ri-instagram-fill"></i></a>
-                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        <div class="col-lg-6 mt-4" data-aos="zoom-in" data-aos-delay="300">
-  <div class="member d-flex align-items-start">
-    <img src="{{ asset(' front-office/img/team/team-3.jpg') }}" class="img-fluid" alt="">
-    <div class="member-info">
-      <h4>William Anderson</h4>
-      <span>CTO</span>
-
-                <p>Quisquam facilis cum velit laborum corrupti fuga rerum quia</p>
-                <div class="social">
-                  <a href=""><i class="ri-twitter-fill"></i></a>
-                  <a href=""><i class="ri-facebook-fill"></i></a>
-                  <a href=""><i class="ri-instagram-fill"></i></a>
-                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          
-
-        </div>
-
       </div>
-    </section><!-- End Team Section -->
+
+      <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="200">
+        <div class="member d-flex align-items-start">
+          <div class="member-info">
+            <h4>Livraison standard</h4>
+            <span>3-5 jours ouvrables</span>
+            <p>Recevez votre commande en 3 à 5 jours ouvrables.</p>
+          <a href="#" class="btn-get-started btn-outline">Choisir cette option</a>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
     
 
@@ -441,7 +403,7 @@
         <div class="row justify-content-center">
           <div class="col-lg-6">
             <h4>Join Our Newsletter</h4>
-
+            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
             <form action="" method="post">
               <input type="email" name="email"><input type="submit" value="Subscribe">
             </form>
@@ -457,39 +419,39 @@
           <div class="col-lg-3 col-md-6 footer-contact">
             <h3>SWAP</h3>
             <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br><br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
+              United Coders <br>
+              Esprit Ingénieur <br>
+              Ariana, Tunisie <br><br>
+              <strong>Téléphone:</strong> +216 55666495<br>
+              <strong>Email:</strong> shop@swap.com<br>
             </p>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Useful Links</h4>
+            <h4>Consulter</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Acceuil</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">A propos</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Produits </a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services </a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Echange</a></li>
             </ul>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
+            <h4>Consulter</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Produits</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Réclamation</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Livraison</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Compte</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Contact</a></li>
             </ul>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Social Networks</h4>
-      
+            <h4>Réseaux Sociaux</h4>
+            <p>Pour plus d'informations contactez nous à nos pages sur les réseaux sociaux :</p>
             <div class="social-links mt-3">
               <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
               <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
@@ -505,15 +467,9 @@
 
     <div class="container footer-bottom clearfix">
       <div class="copyright">
-        &copy; Copyright <strong><span>SWAP</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>SWAP</span></strong>. With LOVE 
       </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ -->
-        
-      </div>
+      
     </div>
   </footer><!-- End Footer -->
   {% endblock %}

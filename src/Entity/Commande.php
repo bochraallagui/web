@@ -31,7 +31,7 @@ class Commande
     
      #[ORM\Column] 
      
-    private ?float $total = null ;;
+    private ?float $total = null ;
 
     /**
      * @var \Pointderelais

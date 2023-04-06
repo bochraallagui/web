@@ -29,7 +29,7 @@ class Livraison
     
       #[ORM\Column( length :255 )]
      
-    private ?string $adresseLivraison = null;;
+    private ?string $adresseLivraison = null;
 
     /**
      * @var \User

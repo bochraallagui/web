@@ -14,7 +14,7 @@ class Categorie
     private ?int $idCategorie = null;
 
     #[ORM\Column(length : 11)]
-    private ?string $typeCategorie = null;;
+    private ?string $typeCategorie = null;
 
     public function getIdCategorie(): ?int
     {
