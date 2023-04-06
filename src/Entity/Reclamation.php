@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Entity;
-
+use App\Repository\ReclamationRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ReclamationRepository::class)]
@@ -23,15 +23,11 @@ class Reclamation
      
     private ?string $text = null;
 
-    /**
-     * @var \User
-     *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="fk_id_utilisateur", referencedColumnName="id")
-     * })
-     */
-    private $fkIdUtilisateur;
+    
+     #[ORM\ManyToOne(inversedBy: 'reclamations')]
+    
+     
+    private ?User $fkIdUtilisateur = null;
 
     public function getIdRec(): ?int
     {
