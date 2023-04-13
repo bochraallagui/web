@@ -4,36 +4,53 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: PointderelaisRepository::class)]
+/**
+ * Pointderelais
+ *
+ * @ORM\Table(name="pointderelais", indexes={@ORM\Index(name="fk_id_livraisonp", columns={"fk_id_livraisonp"})})
+ * @ORM\Entity
+ */
 class Pointderelais
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    
-    private ?int $idPointderelais = null;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id_pointderelais", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idPointderelais;
 
-    
-      #[ORM\Column( length:255)]
-     
-    private ?string $adressePointderelais = null;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse_pointderelais", type="string", length=255, nullable=false)
+     */
+    private $adressePointderelais;
 
-    public function getIdPointderelais(): ?int
-    {
-        return $this->idPointderelais;
-    }
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="region", type="string", length=255, nullable=false)
+     */
+    private $region;
 
-    public function getAdressePointderelais(): ?string
-    {
-        return $this->adressePointderelais;
-    }
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="horaire", type="integer", nullable=false)
+     */
+    private $horaire;
 
-    public function setAdressePointderelais(string $adressePointderelais): self
-    {
-        $this->adressePointderelais = $adressePointderelais;
-
-        return $this;
-    }
+    /**
+     * @var \Livraison
+     *
+     * @ORM\ManyToOne(targetEntity="Livraison")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="fk_id_livraisonp", referencedColumnName="id_livraison")
+     * })
+     */
+    private $fkIdLivraisonp;
 
 
 }

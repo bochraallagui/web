@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use App\Repository\ReponseRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReponseRepository::class)]
 class Reponse
@@ -15,6 +17,7 @@ class Reponse
 
    #[ORM\Column( length:255)]
     
+   #[Assert\NotBlank(message:"message reponse is required")]
     private ?string $messageRep = null;
 
 
@@ -22,25 +25,15 @@ class Reponse
      
     private ?string $etat = null;
 
-    /**
-     * @var \User
-     *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="fk_id_admin", referencedColumnName="id")
-     * })
-     */
-    private $fkIdAdmin;
+     #[ORM\ManyToOne(inversedBy: 'reponses')]
+     
+    private ?User $fkIdAdmin = null;
+    #[ORM\ManyToOne(inversedBy: 'reponses')]
+    
+#[ORM\JoinColumn(name: "fk_id_reclamation", referencedColumnName: "id_rec")]
+private ?Reclamation $fkIdReclamation = null;
 
-    /**
-     * @var \Reclamation
-     *
-     * @ORM\ManyToOne(targetEntity="Reclamation")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="fk_id_reclamation", referencedColumnName="id_rec")
-     * })
-     */
-    private $fkIdReclamation;
+
 
     public function getIdReponse(): ?int
     {

@@ -2,17 +2,24 @@
 
 namespace App\Entity;
 
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CommandeRepository::class)]
+/**
+ * Commande
+ *
+ * @ORM\Table(name="commande", indexes={@ORM\Index(name="fk_id_livraison", columns={"fk_id_livraison"})})
+ * @ORM\Entity
+ */
 class Commande
 {
-    #[ORM\Id]
-     #[ORM\GeneratedValue]
-     #[ORM\Column]
-     
-    private ?int $idCommande = null ;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id_commande", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idCommande;
 
     /**
      * @var int
@@ -22,26 +29,11 @@ class Commande
     private $nbrProduit;
 
     /**
-     * @var \DateTime
+     * @var float
      *
-     * @ORM\Column(name="date_commande", type="date", nullable=false)
+     * @ORM\Column(name="total", type="float", precision=10, scale=0, nullable=false)
      */
-    private $dateCommande;
-
-    
-     #[ORM\Column] 
-     
-    private ?float $total = null ;
-
-    /**
-     * @var \Pointderelais
-     *
-     * @ORM\ManyToOne(targetEntity="Pointderelais")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="fk_id_pointderelais", referencedColumnName="id_pointderelais")
-     * })
-     */
-    private $fkIdPointderelais;
+    private $total;
 
     /**
      * @var \Livraison
@@ -52,71 +44,6 @@ class Commande
      * })
      */
     private $fkIdLivraison;
-
-    public function getIdCommande(): ?int
-    {
-        return $this->idCommande;
-    }
-
-    public function getNbrProduit(): ?int
-    {
-        return $this->nbrProduit;
-    }
-
-    public function setNbrProduit(int $nbrProduit): self
-    {
-        $this->nbrProduit = $nbrProduit;
-
-        return $this;
-    }
-
-    public function getDateCommande(): ?\DateTimeInterface
-    {
-        return $this->dateCommande;
-    }
-
-    public function setDateCommande(\DateTimeInterface $dateCommande): self
-    {
-        $this->dateCommande = $dateCommande;
-
-        return $this;
-    }
-
-    public function getTotal(): ?float
-    {
-        return $this->total;
-    }
-
-    public function setTotal(float $total): self
-    {
-        $this->total = $total;
-
-        return $this;
-    }
-
-    public function getFkIdPointderelais(): ?Pointderelais
-    {
-        return $this->fkIdPointderelais;
-    }
-
-    public function setFkIdPointderelais(?Pointderelais $fkIdPointderelais): self
-    {
-        $this->fkIdPointderelais = $fkIdPointderelais;
-
-        return $this;
-    }
-
-    public function getFkIdLivraison(): ?Livraison
-    {
-        return $this->fkIdLivraison;
-    }
-
-    public function setFkIdLivraison(?Livraison $fkIdLivraison): self
-    {
-        $this->fkIdLivraison = $fkIdLivraison;
-
-        return $this;
-    }
 
 
 }

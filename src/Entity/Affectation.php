@@ -4,63 +4,42 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: AffectationRepository::class)]
+/**
+ * Affectation
+ *
+ * @ORM\Table(name="affectation", indexes={@ORM\Index(name="fk_id_produit", columns={"fk_id_produit"}), @ORM\Index(name="fk_id_commande", columns={"fk_id_commande"})})
+ * @ORM\Entity
+ */
 class Affectation
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    
-    private ?int $idAffectation = null;
-
     /**
-     * @var \Commande
+     * @var int
      *
-     * @ORM\ManyToOne(targetEntity="Commande")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="fk_idcommande", referencedColumnName="id_commande")
-     * })
+     * @ORM\Column(name="id_affectation", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $fkIdcommande;
+    private $idAffectation;
 
     /**
      * @var \Produit
      *
      * @ORM\ManyToOne(targetEntity="Produit")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="fk_idproduit", referencedColumnName="id_produit")
+     *   @ORM\JoinColumn(name="fk_id_produit", referencedColumnName="id_produit")
      * })
      */
-    private $fkIdproduit;
+    private $fkIdProduit;
 
-    public function getIdAffectation(): ?int
-    {
-        return $this->idAffectation;
-    }
-
-    public function getFkIdcommande(): ?Commande
-    {
-        return $this->fkIdcommande;
-    }
-
-    public function setFkIdcommande(?Commande $fkIdcommande): self
-    {
-        $this->fkIdcommande = $fkIdcommande;
-
-        return $this;
-    }
-
-    public function getFkIdproduit(): ?Produit
-    {
-        return $this->fkIdproduit;
-    }
-
-    public function setFkIdproduit(?Produit $fkIdproduit): self
-    {
-        $this->fkIdproduit = $fkIdproduit;
-
-        return $this;
-    }
+    /**
+     * @var \Commande
+     *
+     * @ORM\ManyToOne(targetEntity="Commande")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="fk_id_commande", referencedColumnName="id_commande")
+     * })
+     */
+    private $fkIdCommande;
 
 
 }

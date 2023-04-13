@@ -1,20 +1,37 @@
 {% extends 'baseFront.html.twig' %}
 
-{% block title %}Hello ReclamationFrontController!{% endblock %}
-
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <h1></h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdRec</th>
+                <th>L'objectif de la réclamation</th>
+                <th>Le texte </th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reclamation in reclamations %}
+            <tr>
+                <td>{{ reclamation.idRec }}</td>
+                <td>{{ reclamation.objectif }}</td>
+                <td>{{ reclamation.text }}</td>
+                <td>
+                    <a href="{{ path('app_reclamation_front_show', {'idRec': reclamation.idRec}) }}">Afficher les réclamations</a>
+                    <a href="{{ path('app_reclamation_front_edit', {'idRec': reclamation.idRec}) }}">Modifier</a>
+                    <a href="{{ path('app_reclamation_index') }}">Voir les réclamations dans la partie back</a>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/bochr/EspritClub2/src/Controller/ReclamationFrontController.php'|file_link(0) }}">src/Controller/ReclamationFrontController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/bochr/EspritClub2/templates/reclamation_front/index.html.twig'|file_link(0) }}">templates/reclamation_front/index.html.twig</a></code></li>
-    </ul>
-</div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reclamation_front_new') }}">Create new</a>
 {% endblock %}

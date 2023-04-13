@@ -3,6 +3,7 @@
 namespace App\Entity;
 use App\Repository\ReclamationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReclamationRepository::class)]
 class Reclamation
@@ -15,19 +16,19 @@ class Reclamation
     private ?int $idRec = null;
 
     #[ORM\Column(length : 255)]
+    #[Assert\NotBlank(message:"objectif is required")]
      
     private ?string $objectif = null ;
 
-    
-      #[ORM\Column(length:255)]
-     
-    private ?string $text = null;
+    #[ORM\Column(length:255)]
+
+private ?string $text = null;
 
     
-     #[ORM\ManyToOne(inversedBy: 'reclamations')]
-    
-     
+    #[ORM\ManyToOne(inversedBy: 'reclamations')]
+
     private ?User $fkIdUtilisateur = null;
+    
 
     public function getIdRec(): ?int
     {
