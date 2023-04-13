@@ -3,18 +3,37 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
-#[ORM\Entity(repositoryClass: CategorieRepository::class)]
+/**
+ * Categorie
+ *
+ * @ORM\Table(name="categorie")
+ * @ORM\Entity
+ * @UniqueEntity(fields={"typeCategorie"}, message="Type doit être unique")
+ */
 class Categorie
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    
-    private ?int $idCategorie = null;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id_categorie", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idCategorie;
 
-    #[ORM\Column(length : 11)]
-    private ?string $typeCategorie = null;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type_categorie", type="string", length=255, nullable=false)
+     * @Assert\NotBlank(message="Type doit être non vide")
+     * 
+     */
+
+   
+    private $typeCategorie;
 
     public function getIdCategorie(): ?int
     {
@@ -34,4 +53,14 @@ class Categorie
     }
 
 
+    public function __toString()
+    {
+        return(string) $this->getIdCategorie();
+
+    }
+
+
+
+
+    
 }

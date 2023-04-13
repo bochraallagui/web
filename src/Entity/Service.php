@@ -2,31 +2,42 @@
 
 namespace App\Entity;
 
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-#[ORM\Entity(repositoryClass: ServiceRepository::class)]
+/**
+ * Service
+ *
+ * @ORM\Table(name="service", indexes={@ORM\Index(name="fk_id_categorie", columns={"fk_id_categorie"})})
+ * @ORM\Entity
+ */
 class Service
 {
-
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    
-        private ?int $id = null;
-    
-    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id_service", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
     private $idService;
 
-   
-      #[ORM\Column( length:255)]
-     
-    private ?string $descriptionService = null;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description_service", type="string", length=255, nullable=false)
+      * @Assert\NotBlank(message="Description doit être non vide")
+     */
+    private $descriptionService;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="date_service", type="date", nullable=false)
+     * @ORM\Column(name="date_service", type="string", length=255, nullable=false)
+     * @Assert\Date(
+ *      message = "La date '{{ value }}' n'est pas une date valide."
+ * )
      */
     private $dateService;
 
@@ -34,14 +45,20 @@ class Service
      * @var int
      *
      * @ORM\Column(name="prix_service", type="integer", nullable=false)
+     * @Assert\NotBlank(message="Prix doit être supérieur à 0")
      */
     private $prixService;
 
-   
-      #[ORM\Column( length:255)]
-     
-    private ?string $typePaiementService = null;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type_paiement_service", type="string", length=255, nullable=false)
+     * @Assert\NotBlank(message="Type doit être non vide")
+     * @Assert\Choice(choices={"cash", "carte"}, message="Veuillez choisir entre 'cash' ou 'carte'")
+     */
+    private $typePaiementService;
 
+ 
     /**
      * @var \Categorie
      *
@@ -49,6 +66,7 @@ class Service
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="fk_id_categorie", referencedColumnName="id_categorie")
      * })
+     * @Assert\NotBlank(message="Type doit être non vide")
      */
     private $fkIdCategorie;
 
@@ -69,12 +87,12 @@ class Service
         return $this;
     }
 
-    public function getDateService(): ?\DateTimeInterface
+    public function getDateService(): ?string
     {
         return $this->dateService;
     }
 
-    public function setDateService(\DateTimeInterface $dateService): self
+    public function setDateService(string $dateService): self
     {
         $this->dateService = $dateService;
 
@@ -83,8 +101,9 @@ class Service
 
     public function getPrixService(): ?int
     {
-        return $this->prixService;
+        return abs($this->prixService);
     }
+  
 
     public function setPrixService(int $prixService): self
     {
@@ -116,11 +135,6 @@ class Service
 
         return $this;
     }
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
+   
 
 }
