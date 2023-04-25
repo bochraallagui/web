@@ -1,0 +1,13 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}Edit Feedback{% endblock %}
+
+{% block body %}
+    <h1>Edit Feedback</h1>
+
+    {{ include('feedback/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_feedback_indexFront') }}">back to list</a>
+
+    {{ include('feedback/_delete_formFront.html.twig') }}
+{% endblock %}

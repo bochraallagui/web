@@ -1,0 +1,39 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}Feedback index{% endblock %}
+
+{% block body %}
+    <h1>Feedback de services </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdFeedback</th>
+                <th>Service</th>
+                <th>User</th>
+                <th>Favoris</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for feedback in feedback %}
+            <tr>
+                <td>{{ feedback.idFeedback }}</td>
+                <td>{{ feedback.fkIdService }}</td>
+                <td>{{ feedback.fkIdUser }}</td>
+                <td>{{ feedback.favoris ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_feedback_showFront', {'idFeedback': feedback.idFeedback}) }}">show</a>
+                    <a href="{{ path('app_feedback_editFront', {'idFeedback': feedback.idFeedback}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_feedback_newFront') }}">Create new</a>
+{% endblock %}
