@@ -1,0 +1,41 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}Rechercher un produit{% endblock %}
+
+{% block body %}
+    <h1>Rechercher une réclamation</h1>
+
+    <form action="{{ path('app_produit_search') }}" method="GET">
+        <div class="form-group">
+            <label for="searchTerm">Rechercher</label>
+            <input type="text" name="q" id="searchTerm" class="form-control" placeholder="">
+        </div>
+        <button type="submit" class="btn btn-primary">Rechercher</button>
+    </form>
+
+    {% if produits is not empty %}
+        <h2>Résultats de la recherche pour "{{ searchTerm }}" :</h2>
+
+        <table class="table">
+        
+            <tbody>
+                {% for produit in produits %}
+                    <tr>
+                        
+                        <td>{{ produit.typeproduit }}</td>
+                        <td>{{ produit.prixproduit }}</td>
+                        <td>
+                            
+                        <a href="{{ path('app_produit_show', {'typeproduit': produit.typeproduit}) }}" class="btn btn-primary">
+                                Afficher
+                            </a>
+                        <a href="{{ path('app_produit_edit', {'prixproduit': produit.prixproduit}) }}" class="btn btn-secondary">
+                                Modifier
+                            </a>    
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}
