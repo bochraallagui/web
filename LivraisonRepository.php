@@ -37,4 +37,24 @@ class LivraisonRepository extends ServiceEntityRepository
         }
     }
 
+    public function searchAndSortByAddress($adresseLivraison, $sortBy)
+    {
+        $queryBuilder = $this->createQueryBuilder('a');
+    
+        if ($adresseLivraison) {
+            $queryBuilder->andWhere('a.adresseLivraison LIKE :adresseLivraison')
+                ->setParameter('adresseLivraison', '%'.$adresseLivraison.'%');
+        }
+    
+        if ($sortBy == 'adresseLivraison') {
+            $queryBuilder->orderBy('a.adresseLivraison', 'DESC');
+        } else {
+            $queryBuilder->orderBy('a.idLivraison', 'ASC');
+        }
+    
+        $query = $queryBuilder->getQuery();
+        return $query->getResult();
+    }
+    
+
 }

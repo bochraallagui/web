@@ -3,8 +3,10 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\Livraison;
+
 use App\Repository\PointderelaisRepository;
+use Symfony\Component\Validator\Constraints as Assert;
+use App\Entity\Livraison;
 
 #[ORM\Entity(repositoryClass: PointderelaisRepository::class)]
 class Pointderelais
@@ -16,18 +18,24 @@ class Pointderelais
 
     
     #[ORM\Column( length :255 )]
+    #[Assert\NotBlank(message:"L'adresse  doit contenir au moins 10 caractères")]
     private ?string $adressePointderelais=null;
 
     
     #[ORM\Column( length :255 )]
+    #[Assert\NotBlank(message:"La region  doit contenir au moins 5 caractères")]
     private ?string $region=null;
 
     #[ORM\Column]
+    #[Assert\Positive(message:"L'horaire doit etre un nombre positive")]
     private ?int $horaire=null;
-
-    #[ORM\ManyToOne(inversedBy: 'pointderelaiss')]
     
-    #[ORM\JoinColumn(name: "fk_id_livraisonp", referencedColumnName: "idLivraison")]
+   
+
+
+    #[ORM\ManyToOne(inversedBy: 'pointderelais')]
+    #[ORM\JoinColumn(name: "fk_id_livraisonp", referencedColumnName: "id_livraison")]
+   
     private ?Livraison $fkIdLivraisonp = null;
   
 
@@ -51,7 +59,7 @@ class Pointderelais
 
     public function getRegion(): ?string
     {
-        return $this->adressePointderelais;
+        return $this->region;
     }
 
     public function setRegion(string $region): self
@@ -77,7 +85,7 @@ class Pointderelais
         return $this->fkIdLivraisonp;
     }
 
-    public function setFkIdLivraison(?User $fkIdLivraisonp): self
+    public function setFkIdLivraisonp(?Livraison $fkIdLivraisonp): self
     {
         $this->fkIdLivraisonp= $fkIdLivraisonp;
 

@@ -2,10 +2,9 @@
 
 namespace App\Entity;
 
+use App\Repository\UserRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use App\Repository\UserRepository;
-
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User
@@ -43,8 +42,12 @@ class User
      
     private ?string $adresse = null;
 
-    #[ORM\Column]
-    private ?int $numTel=null;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="num_tel", type="integer", nullable=false)
+     */
+    private $numTel;
 
      #[ORM\Column( length:255)]
    

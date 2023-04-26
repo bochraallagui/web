@@ -5,6 +5,10 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\LivraisonRepository;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Entity\User;
+use App\Entity\Pointderelais;
+use Doctrine\DBAL\Types\Types;
+
 
 #[ORM\Entity(repositoryClass: LivraisonRepository::class)]
 class Livraison
@@ -12,15 +16,14 @@ class Livraison
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    
     private ?int $idLivraison = null;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_livraison", type="date", nullable=false)
-     */
-    private $dateLivraison;
+
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\NotBlank(message:"date est requis")]
+    private ?\DateTimeInterface $dateLivraison = null;
+
 
     
      #[ORM\Column]
@@ -30,13 +33,22 @@ class Livraison
     
       #[ORM\Column( length :255 )]
       #[Assert\NotBlank(message:"Le champ texte doit contenir au moins 10 caractères")]
-    private ?string $adresseLivraison = null;
+      private ?string $adresseLivraison = null;
 
-    #[ORM\ManyToOne(inversedBy: 'livraisons')]
-    
+      #[ORM\Column( length :255 )]
+      #[Assert\NotBlank(message:"Le champ texte doit contenir au moins 5 caractères")]
+      private ?string $etatLivraison= null;
+
+      #[ORM\ManyToOne(inversedBy: 'livraisons')]
       #[ORM\JoinColumn(name: "fk_id_livreur", referencedColumnName: "id")]
+
       private ?User $fkIdLivreur = null;
     
+
+      #[ORM\ManyToOne(inversedBy: 'livraisons')]
+      #[ORM\JoinColumn(name:"fk_id_pointderelais", referencedColumnName: "id_pointderelais")]
+      private ?Pointderelais $fkIdPointderelais = null;
+
 
     public function getIdLivraison(): ?int
     {
@@ -79,6 +91,18 @@ class Livraison
         return $this;
     }
 
+    public function getEtatLivraison(): ?string
+    {
+        return $this->etatLivraison;
+    }
+
+    public function setEtatLivraison(string $etatLivraison): self
+    {
+        $this->etatLivraison = $etatLivraison;
+
+        return $this;
+    }
+
     public function getFkIdLivreur(): ?User
     {
         return $this->fkIdLivreur;
@@ -91,5 +115,16 @@ class Livraison
         return $this;
     }
 
+    public function getFkIdPointderelais(): ?Pointderelais
+    {
+        return $this->fkIdPointderelais;
+    }
+
+    public function setFkIdPointderelais(?Pointderelais $fkIdPointderelais): self
+    {
+        $this->fkIdPointderelais = $fkIdPointderelais;
+
+        return $this;
+    }
 
 }

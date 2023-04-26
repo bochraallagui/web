@@ -7,17 +7,23 @@
         <thead>
             <tr>
                 <th>IdLivraison</th>
+                <th>DateLivraison</th>
                 <th>PrixLivraison</th>
                 <th>AdresseLivraison</th>
+                <th>EtatLivraison</th>
+                <th>Livreur</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for livraison in livraisons %}
+        {% for livraison in pagination %}
             <tr>
                 <td>{{ livraison.idLivraison }}</td>
+                <td>{{ livraison.dateLivraison ? livraison.dateLivraison|date('Y-m-d') : '' }}</td>
                 <td>{{ livraison.prixLivraison }}</td>
                 <td>{{ livraison.adresseLivraison }}</td>
+                <td>{{ livraison.etatLivraison }}</td>
+                <td>{{ livraison.fkIdLivreur.nom }} {{ livraison.fkIdLivreur.prenom }}</td>
                 <td>
                     <a href="{{ path('app_livraison_show', {'idLivraison': livraison.idLivraison}) }}">show</a>
                     <a href="{{ path('app_livraison_edit', {'idLivraison': livraison.idLivraison}) }}">edit</a>
@@ -25,11 +31,43 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="5">no records found</td>
             </tr>
         {% endfor %}
+       {% if pagination.getPageCount() > 1 %}
+    <nav aria-label="...">
+        <ul class="pagination">
+        
+            {% if pagination.getCurrentPageNumber() != 1 %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path('app_livraison_index', {'page': pagination.getCurrentPageNumber() - 1}) }}">Précédent</a>
+                </li>
+            {% endif %}
+            {% for page in 1..pagination.getPageCount() %}
+                {% if page <= 10 %}
+                <li class="page-item {% if pagination.getCurrentPageNumber() == page %}active{% endif %}">
+                    <a class="page-link" href="{{ path('app_livraison_index', {'page': page}) }}">{{ page }}</a>
+                </li>
+                {% endif %}
+            {% endfor %}
+            {% if pagination.getCurrentPageNumber() != pagination.getPageCount() %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path('app_livraison_index', {'page': pagination.getCurrentPageNumber() + 1}) }}">Suivant</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}
         </tbody>
     </table>
 
     <a href="{{ path('app_livraison_new') }}">Create new</a>
+
+    <a href="{{ path('app_livraison_index', {'sortBy': 'adresseLivraison'}) }}" class="btn btn-sm btn-primary">Trier </a>
+    
+    <form action="{{ path('app_livraison_index') }}" method="GET">
+        <label for="search">Recherche par adresse de livraison :</label>
+        <input type="text" id="search" name="q" placeholder="Adresse de livraison..." value="{{ app.request.query.get('q') }}">
+        <button type="submit">Rechercher</button>
+    </form>
 {% endblock %}

@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use App\Repository\ServiceRepository;
+
 #[ORM\Entity(repositoryClass: ServiceRepository::class)]
 class Service
 {
@@ -13,10 +13,10 @@ class Service
     #[ORM\GeneratedValue]
     #[ORM\Column]
     
-
+        private ?int $id = null;
     
     
-    private ?int $idService=NULL;
+    private $idService;
 
    
       #[ORM\Column( length:255)]
@@ -117,7 +117,10 @@ class Service
         return $this;
     }
 
-    
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
 
 }

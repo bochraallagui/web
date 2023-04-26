@@ -10,12 +10,24 @@
                 <td>{{ livraison.idLivraison }}</td>
             </tr>
             <tr>
+                <th>DateLivraison</th>
+                <td>{{ livraison.dateLivraison ? livraison.dateLivraison|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
                 <th>PrixLivraison</th>
                 <td>{{ livraison.prixLivraison }}</td>
             </tr>
             <tr>
                 <th>AdresseLivraison</th>
                 <td>{{ livraison.adresseLivraison }}</td>
+            </tr>
+            <tr>
+                <th>EtatLivraison</th>
+                <td>{{ livraison.etatLivraison }}</td>
+            </tr>
+             <tr>
+                <th>Livreur</th>
+                <td>{{ livraison.fkIdLivreur }}</td>
             </tr>
         </tbody>
     </table>

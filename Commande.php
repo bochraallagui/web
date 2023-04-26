@@ -4,9 +4,6 @@ namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\Livraison;
-use App\Entity\Pointderelais;
-use App\Repository\CommandeRepository;
 
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
 class Commande
@@ -36,7 +33,16 @@ class Commande
      
     private ?float $total = null ;
 
-   
+    /**
+     * @var \Pointderelais
+     *
+     * @ORM\ManyToOne(targetEntity="Pointderelais")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="fk_id_pointderelais", referencedColumnName="id_pointderelais")
+     * })
+     */
+    private $fkIdPointderelais;
+
     /**
      * @var \Livraison
      *
@@ -88,8 +94,18 @@ class Commande
         return $this;
     }
 
-    
-    
+    public function getFkIdPointderelais(): ?Pointderelais
+    {
+        return $this->fkIdPointderelais;
+    }
+
+    public function setFkIdPointderelais(?Pointderelais $fkIdPointderelais): self
+    {
+        $this->fkIdPointderelais = $fkIdPointderelais;
+
+        return $this;
+    }
+
     public function getFkIdLivraison(): ?Livraison
     {
         return $this->fkIdLivraison;
