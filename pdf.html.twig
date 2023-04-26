@@ -1,0 +1,36 @@
+<h1 class="align-center">Bienvenue dans notre application  </h1>
+
+<p>Voilà la liste de tous les services</p>
+<table class="table" border="5" >
+    <thead>
+     <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Prix</th>
+                <th>TypePaiement</th>
+                <th></th>
+            </tr>
+    </thead>
+    <tbody>
+    {% for service in services %}
+            <tr>
+                <td>{{ service.idService }}</td>
+                <td>{{ service.descriptionService }}</td>
+                <td>{{ service.dateService }}</td>
+                <td>{{ service.prixService }}</td>
+                <td>{{ service.typePaiementService }}</td>
+                
+            </tr>
+           
+    {% else %}
+        <tr>
+            <td colspan="8">no records found</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<br>
+<br>
+<br>
+<br>
