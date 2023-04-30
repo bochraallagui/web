@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+ <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+        <ol>
+          <li><a href="index.html">Acceuil</a></li>
+          <li>Produit Details</li>
+        </ol>
+      </div>
+    </section>
+<div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-8">
+            <img src="{{ asset('images/' ~ produit.image) }}" style="width: 520px; height: 250px;" />
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="portfolio-info">
+              <h3>Description de produit</h3>
+              <ul>
+                <li><strong>catégorie de produit</strong>:{{ produit.typeProduit }}</li>
+                <li><strong>type de paiement</strong>: {{ produit.typePaiement }}</li>
+                <li><strong>prix du produit date</strong>:{{ produit.prixProduit }}</li>
+                
+              </ul>
+            </div>
+            <div class="portfolio-description">
+              <h2>Les détails de produit</h2>
+              <p>{{ produit.descriptionProduit }}  </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    <a href="{{ path('app_produit_index') }}">back to list</a>
+
+    <a href="{{ path('app_produit_edit', {'idProduit': produit.idProduit}) }}">edit</a>
+
+    {{ include('produit/_delete_form.html.twig') }}
+{% endblock %}

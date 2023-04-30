@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Edit Produit</h1>
+    <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+        {{ form_start(form ,{'attr': {'class' : 'needs-validation','novalidate': true,'id' : 'form'}}) }}
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="name">Type produit</label>
+                {{ form_widget(form.typeProduit, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.typeProduit) }}
+            </div>
+            <div class="form-group col-md-6">
+                <label for="name">Type paiement</label>
+                {{ form_widget(form.typePaiement, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.typePaiement) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name">Prix</label>
+            {{ form_widget(form.prixProduit, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.prixProduit) }}
+        </div>
+        <div class="form-group">
+            <label for="name">Description</label>
+            {{ form_widget(form.descriptionProduit, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.descriptionProduit) }}
+        </div>
+              
+        {{ form_end(form) }} 
+        
+        <a href="{{ path('app_produit_index') }}">back to list</a>
+    </div>
+{% endblock %}

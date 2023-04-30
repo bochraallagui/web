@@ -1,12 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseFront.html.twig' %}
 {% block body %}
-<br><br><br>
-    <h1><center>Liste des produits</center></h1>
+    <h1>Produit index</h1>
 
     <table class="table">
         <thead>
             <tr>
-              
+                <th>IdProduit</th>
                 <th>PrixProduit</th>
                 <th>TypePaiement</th>
                 <th>TypeProduit</th>
@@ -17,7 +16,7 @@
         <tbody>
         {% for produit in produits %}
             <tr>
-               
+                <td>{{ produit.idProduit }}</td>
                 <td>{{ produit.prixProduit }}</td>
                 <td>{{ produit.typePaiement }}</td>
                 <td>{{ produit.typeProduit }}</td>
@@ -25,8 +24,6 @@
                 <td>
                     <a href="{{ path('app_produit_show', {'idProduit': produit.idProduit}) }}">show</a>
                     <a href="{{ path('app_produit_edit', {'idProduit': produit.idProduit}) }}">edit</a>
-                    <a href="{{ path('app_commande_new', {'id': produit.idproduit}) }}">Commander</a>
-
                 </td>
             </tr>
         {% else %}
